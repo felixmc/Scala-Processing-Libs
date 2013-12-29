@@ -14,7 +14,7 @@ object ParticleSketch extends ProcessingSketch {
     super.setup
 
     ps = new ParticleSystem( this ) {
-      particleCount = 700
+      particleCount = 1000
       particleOrigin = new PVector( config.dimensions.width / 2, config.dimensions.height / 2 )
       minParticleVelocity = new PVector( -1f, -1f )
       maxParticleVelocity = new PVector( 1f, 1f )
@@ -22,9 +22,9 @@ object ParticleSketch extends ProcessingSketch {
       maxParticleOriginOffset = new PVector( 30, 30 )
       particleColor = new HSBColor( hue = 173, alpha = 180 )
       minParticleLifetime = 100
-      maxParticleLifetime = 300
-      minParticleSize = 5
-      maxParticleSize = 15
+      maxParticleLifetime = 200
+      minParticleSize = 2
+      maxParticleSize = 7
       onParticleCreate = p => {
         // offset hue of newly created particles
         p.color.asInstanceOf[HSBColor].transform( random( -15, 15 ) )
@@ -33,10 +33,10 @@ object ParticleSketch extends ProcessingSketch {
         // on mouse pressed..
         if ( p.canvas.mousePressed ) {
           // decrease particle size..
-          p.size = p.size - .15f
+          p.size = p.size - .05f
 
           // and decrease particle opacity
-          p.color.asInstanceOf[HSBColor].transform( alpha = .8f )
+          p.color.asInstanceOf[HSBColor].transform( alpha = -1.5f )
 
           // remove particle if size or opacity are less than 0
           if ( p.color.a <= 0 || p.size <= 0 )

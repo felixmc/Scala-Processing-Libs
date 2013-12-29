@@ -1,16 +1,13 @@
 package com.felixmilea.processing.core
 
-import javax.swing.JPanel
 import javax.swing.JFrame
 import java.awt.Dimension
 import java.awt.Frame
 import java.awt.Toolkit
 import java.awt.BorderLayout
-import java.awt.event.ComponentListener
-import java.awt.event.ComponentEvent
-import java.awt.Color
 
-class SketchFrame( sketch: ProcessingSketch ) extends JFrame() {
+/** A specialized JFrame that displays a ProcesingSketch */
+class SketchFrame( sketch: ProcessingSketch ) extends JFrame {
   setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE )
   setLayout( new BorderLayout() )
   setMinimumSize( new Dimension( 200, 200 ) )
