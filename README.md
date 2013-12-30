@@ -2,7 +2,7 @@
 Scala libraries for the Processing development environment. Contributions to this repository are welcome. Additional documentation can be found on my [blog](http://felixmilea.com/?s=scala+processing).
 
 ##Requirements
-In order for the libraries to compile, Processing 2 must be added to the build path.
+To use these libraries, you must download Processing and include core.jar and jogl.jar (found in /core/library) to the build path.
 
 ##Examples
 The `com.felixmilea.processing.examples` package contains examples of Processing sketches written using these libraries. All objects within the package are runnable sketches and are documented with comments.
