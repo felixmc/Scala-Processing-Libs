@@ -15,7 +15,6 @@ object ParticleSketch extends ProcessingSketch {
 
     ps = new ParticleSystem( this ) {
       particleCount = 1000
-      particleOrigin = new PVector( config.dimensions.width / 2, config.dimensions.height / 2 )
       minParticleVelocity = new PVector( -1f, -1f )
       maxParticleVelocity = new PVector( 1f, 1f )
       minParticleOriginOffset = new PVector( -30, -30 )

@@ -22,10 +22,10 @@ class SketchFrame( sketch: ProcessingSketch ) extends JFrame {
   } else {
     setSize( sketch.config.dimensions.width, sketch.config.dimensions.height )
     setLocationRelativeTo( null )
-  }
 
-  if ( sketch.config.resizeable && !sketch.config.fullScreen )
-    sketch.config.dimensions = Toolkit.getDefaultToolkit.getScreenSize
+    if ( sketch.config.resizeable )
+      sketch.config.dimensions = Toolkit.getDefaultToolkit.getScreenSize
+  }
 
   getContentPane.add( sketch, BorderLayout.CENTER )
 
