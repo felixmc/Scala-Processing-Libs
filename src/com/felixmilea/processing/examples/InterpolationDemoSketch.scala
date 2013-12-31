@@ -1,3 +1,5 @@
+package com.felixmilea.processing.examples
+
 import com.felixmilea.processing.core.ProcessingSketch
 import com.felixmilea.processing.models.Interpolation
 import com.felixmilea.processing.models.RGBColor

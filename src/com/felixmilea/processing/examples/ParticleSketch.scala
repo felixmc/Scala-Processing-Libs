@@ -2,8 +2,8 @@ package com.felixmilea.processing.examples
 
 import com.felixmilea.processing.core.ProcessingSketch
 import com.felixmilea.processing.models.ParticleSystem
-import processing.core.PVector
 import com.felixmilea.processing.models.HSBColor
+import processing.core.PVector
 
 object ParticleSketch extends ProcessingSketch {
   var ps: ParticleSystem = null
