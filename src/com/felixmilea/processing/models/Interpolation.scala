@@ -1,7 +1,7 @@
 package com.felixmilea.processing.models
 
 class Interpolation( start: Float, end: Float, duration: Float = 120f, fn: ( Float, Float, Float, Float ) => Float = Interpolation.linear,
-  repeat: Float = Float.PositiveInfinity, direction: Interpolation.Direction.Direction = Interpolation.Direction.Normal ) extends Updateable {
+  direction: Interpolation.Direction.Direction = Interpolation.Direction.Normal, repeat: Float = Float.PositiveInfinity ) extends Updateable {
   private var currentTime = 0
   private var its = 0
   private var _value = start
@@ -31,6 +31,11 @@ class Interpolation( start: Float, end: Float, duration: Float = 120f, fn: ( Flo
 
 object Interpolation {
 
+  object Direction extends Enumeration {
+    type Direction = Value
+    val Normal, Reverse, Alternate, AlternateReverse = Value
+  }
+
   def linear( t: Float, b: Float, c: Float, d: Float ): Float = {
     return ( c * ( t / d ) ) + b
   }
@@ -47,9 +52,9 @@ object Interpolation {
 
   def easeInOutQuad( t: Float, b: Float, c: Float, d: Float ): Float = {
     var mu = t / ( d / 2 )
-    if ( mu < 1 ) return ( ( c / 2 ) * mu * mu ) + b;
+    if ( mu < 1 ) return ( ( c / 2 ) * mu * mu ) + b
     mu = mu - 1
-    return ( ( -c / 2 ) * ( ( mu * ( mu - 2 ) ) - 1 ) ) + b;
+    return ( ( -c / 2 ) * ( ( mu * ( mu - 2 ) ) - 1 ) ) + b
   }
 
   def easeInCubic( t: Float, b: Float, c: Float, d: Float ): Float = {
@@ -147,6 +152,26 @@ object Interpolation {
     return ( ( c / 2 ) * ( Math.sqrt( 1 - ( mu * mu ) ).asInstanceOf[Float] + 1 ) ) + b
   }
 
+  def easeInBack( t: Float, b: Float, c: Float, d: Float ): Float = {
+    val mu = t / d
+    val s = 1.70158f
+    return ( c * mu * mu * ( ( ( s + 1 ) * mu ) - s ) ) + b
+  }
+
+  def easeOutBack( t: Float, b: Float, c: Float, d: Float ): Float = {
+    val mu = ( t / d ) - 1
+    val s = 1.70158f
+    return ( c * ( mu * mu * ( ( ( s + 1 ) * mu ) + s ) + 1 ) ) + b
+  }
+
+  def easeInOutBack( t: Float, b: Float, c: Float, d: Float ): Float = {
+    var mu = t / ( d / 2 )
+    val s = 1.70158f * 1.525f
+    if ( mu < 1 ) return ( ( c / 2 ) * ( mu * mu * ( ( ( s + 1 ) * mu ) - s ) ) ) + b
+    mu = mu - 2
+    return ( ( c / 2 ) * ( mu * mu * ( ( ( s + 1 ) * mu ) + s ) + 2 ) ) + b
+  }
+
   def easeInBounce( t: Float, b: Float, c: Float, d: Float ): Float = {
     return c - easeOutBounce( d - t, 0, c, d ) + b
   }
@@ -170,10 +195,5 @@ object Interpolation {
   def easeInOutBounce( t: Float, b: Float, c: Float, d: Float ): Float = {
     if ( t < d / 2 ) return easeInBounce( t * 2, 0, c, d ) / 2 + b
     return ( easeOutBounce( t * 2 - d, 0, c, d ) / 2 ) + ( c / 2 ) + b
-  }
-
-  object Direction extends Enumeration {
-    type Direction = Value
-    val Normal, Reverse, Alternate, AlternateReverse = Value
   }
 }

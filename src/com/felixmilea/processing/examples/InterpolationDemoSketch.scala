@@ -17,6 +17,7 @@ object InterpolationDemoSketch extends ProcessingSketch {
     Interpolation.easeInSine, Interpolation.easeOutSine, Interpolation.easeInOutSine,
     Interpolation.easeInExpo, Interpolation.easeOutExpo, Interpolation.easeInOutExpo,
     Interpolation.easeInCirc, Interpolation.easeOutCirc, Interpolation.easeInOutCirc,
+    Interpolation.easeInBack, Interpolation.easeOutBack, Interpolation.easeInOutBack,
     Interpolation.easeInBounce, Interpolation.easeOutBounce, Interpolation.easeInOutBounce
   )
 
