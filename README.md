@@ -4,8 +4,8 @@ Scala libraries for the Processing development environment. Contributions to thi
 ##Requirements
 To use these libraries, you must download Processing and include core.jar and jogl.jar (found in /core/library) to the build path.
 
-##Examples
-The `com.felixmilea.processing.examples` package contains examples of Processing sketches written using these libraries. All objects within the package are runnable sketches and are documented with comments.
+##Structure
+The libraries come in three primary packages: core, models, and examples. Core contains structures necessary to writing and running Processing sketches. Models contains data structures that aid in writing Processing sketches (colors, interpolation, etc). Examples is simply a collection of sketches that showcase the use of the libraries. All objects within the package are runnable sketches and are documented with comments.
 
 ##Getting Started
 To write a new Processing sketch using these libraries, simply create an object that extends the `ProcessingSketch` class. The sketch is inherently runnable once the `draw()` method is implemented. The `setup()` method can optionally be overridden as long as `super.setup` is called from the overridden method.  A `config` property of type `SketchConfig` is inherited from `ProcessingSketch` that is used for configuring the running behavior of the sketch.
