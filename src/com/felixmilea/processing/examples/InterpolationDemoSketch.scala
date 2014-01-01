@@ -31,6 +31,7 @@ object InterpolationDemoSketch extends ProcessingSketch {
     strokeWeight( 1 )
     stroke( 255 )
 
+    // calc column width
     colWidth = config.dimensions.width / inters.length
 
     // add interpolations to update manager
