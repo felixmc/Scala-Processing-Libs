@@ -12,8 +12,8 @@ abstract class ProcessingSketch extends PApplet {
    *
    * Override this method to change how the sketch is ran.
    */
-  def main( args: Array[String] ) {
-    new SketchFrame( this )
+  def main(args: Array[String]) {
+    new SketchFrame(this)
   }
 
   /**
@@ -23,17 +23,27 @@ abstract class ProcessingSketch extends PApplet {
    * @see <a href="http://processing.org/reference/setup_.html">Processing docs</a>
    */
   override def setup() {
-    size( config.dimensions.width, config.dimensions.height )
-    background( 0 )
-    frameRate( config.frameRate )
-    if ( config.smooth )
+    size(config.dimensions.width, config.dimensions.height)
+    background(0)
+    frameRate(config.frameRate)
+    if (config.smooth)
       smooth()
+  }
+
+  private var lastTime: Float = 0
+
+  final override def draw() {
+    val now: Float = System.nanoTime()
+    draw(if (lastTime == 0) lastTime else now - lastTime)
+    lastTime = now
   }
 
   /**
    * Corresponds to the draw method of a regular Processing sketch.
    *
+   * @param dt is a float representing the delta time since draw method was last called in seconds
+   *
    * @see <a href="http://processing.org/reference/draw_.html">Processing docs</a>
    */
-  def draw()
+  def draw(dt: Float)
 }

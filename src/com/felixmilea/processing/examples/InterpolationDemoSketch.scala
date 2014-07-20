@@ -9,7 +9,7 @@ import com.felixmilea.processing.models.HSBColor
 object InterpolationDemoSketch extends ProcessingSketch {
 
   // list of easing functions
-  val easingFns: List[( Float, Float, Float, Float ) => Float] = List( Interpolation.linear,
+  val easingFns: List[(Float, Float, Float, Float) => Float] = List(Interpolation.linear,
     Interpolation.easeInQuad, Interpolation.easeOutQuad, Interpolation.easeInOutQuad,
     Interpolation.easeInCubic, Interpolation.easeOutCubic, Interpolation.easeInOutCubic,
     Interpolation.easeInQuart, Interpolation.easeOutQuart, Interpolation.easeInOutQuart,
@@ -18,18 +18,17 @@ object InterpolationDemoSketch extends ProcessingSketch {
     Interpolation.easeInExpo, Interpolation.easeOutExpo, Interpolation.easeInOutExpo,
     Interpolation.easeInCirc, Interpolation.easeOutCirc, Interpolation.easeInOutCirc,
     Interpolation.easeInBack, Interpolation.easeOutBack, Interpolation.easeInOutBack,
-    Interpolation.easeInBounce, Interpolation.easeOutBounce, Interpolation.easeInOutBounce
-  )
+    Interpolation.easeInBounce, Interpolation.easeOutBounce, Interpolation.easeInOutBounce)
 
   // create list of interpolations based on list of easing functions
-  val inters = easingFns.map( e => new Interpolation( start = 0, end = 255, duration = 180, fn = e, direction = Interpolation.Direction.Alternate ) )
+  val inters = easingFns.map(e => new Interpolation(start = 0, end = 255, duration = 180, fn = e, direction = Interpolation.Direction.Alternate))
 
   var colWidth = 0
 
   override def setup() {
     super.setup
-    strokeWeight( 1 )
-    stroke( 255 )
+    strokeWeight(1)
+    stroke(255)
 
     // calc column width
     colWidth = config.dimensions.width / inters.length
@@ -38,18 +37,18 @@ object InterpolationDemoSketch extends ProcessingSketch {
     UpdatableManager ++= inters
   }
 
-  override def draw() {
-    background( 0 )
+  override def draw(dt: Float) {
+    background(0)
 
     // draw vertical rectangle for each interpolation
-    for ( i <- 0 until inters.length ) {
+    for (i <- 0 until inters.length) {
       // set fill color of rectangle based on interpolation value
-      fill( new RGBColor( red = inters( i ).value, green = 80 + ( inters( i ).value / 10 ) ) )
-      rect( i * colWidth, -1, colWidth, config.dimensions.height + 1 )
+      fill(new RGBColor(red = inters(i).value, green = 80 + (inters(i).value / 10)))
+      rect(i * colWidth, -1, colWidth, config.dimensions.height + 1)
     }
 
     // update all interpolations
-    UpdatableManager.update
+    UpdatableManager.update(dt)
   }
 
 }
